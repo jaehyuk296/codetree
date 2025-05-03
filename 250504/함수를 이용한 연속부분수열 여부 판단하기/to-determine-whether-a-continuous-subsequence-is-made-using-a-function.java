@@ -11,16 +11,24 @@ public class Main {
         for (int i = 0; i < n2; i++)
             b[i] = sc.nextInt();
         // Please write your code here.
-        for(int i=0;i<a;i++){
-            for(int j=0;j<b;j++){
-                if(a[i]==b[j]){
-                    if(a[i+1]==b[j+1]){
-                        System.out.println("Yes");
-                    }else{
-                        System.out.println("No");
-                    }
-                }else{}
+         boolean found = false;
+        for (int i = 0; i <= n1 - n2; i++) {
+            boolean match = true;
+            for (int j = 0; j < n2; j++) {
+                if (a[i + j] != b[j]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                found = true;
+                break;
             }
         }
+
+        if (found)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
     }
 }
