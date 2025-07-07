@@ -12,8 +12,9 @@ class Bomb{
     }
 
     public void print(){
-        System.out.println("code : "+);
-        System.out.println("code : "+);
+        System.out.println("code : "+code);
+        System.out.println("color : "+rgb);
+        System.out.println("second : "+second);
     }
 }
 
@@ -24,5 +25,7 @@ public class Main {
         char lColor = sc.next().charAt(0);
         int time = sc.nextInt();
         // Please write your code here.
+        Bomb boom = new Bomb(uCode,lColor,time);
+        boom.print();
     }
 }
