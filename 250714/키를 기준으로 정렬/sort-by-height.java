@@ -33,7 +33,7 @@ public class Main {
 
         Arrays.sort(student);
 
-        for (int i = 0; i < Math.min(n, 5); i++) {
+        for (int i = 0; i < n; i++) {
             System.out.println(student[i].name + " " + student[i].tall + " " + student[i].weight);
         }
     }
