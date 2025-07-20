@@ -15,9 +15,9 @@ public class Main {
         int time = B-hour;
         time = time*60;
         int minute = C-min;
-        
+        int wrong = -1;
         if(date<0)
-            System.out.println("-1");
+            System.out.println(wrong);
         else
             System.out.println(date+time+minute);
     }
