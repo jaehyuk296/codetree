@@ -5,20 +5,15 @@ public class Main {
         int A = sc.nextInt();
         int B = sc.nextInt();
         int C = sc.nextInt();
-        // Please write your code here.
-        int day = 11;
-        int hour = 11;
-        int min = 11;
 
-        int date = A-day;
-        date = date*24*60;
-        int time = B-hour;
-        time = time*60;
-        int minute = C-min;
-        int wrong = -1;
-        if(date<0)
-            System.out.println(wrong);
-        else
-            System.out.println(date+time+minute);
+        int baseMinutes = (11 * 24 * 60) + (11 * 60) + 11;
+
+        int inputMinutes = (A * 24 * 60) + (B * 60) + C;
+
+        if (inputMinutes < baseMinutes) {
+            System.out.println(-1);
+        } else {
+            System.out.println(inputMinutes - baseMinutes);
+        }
     }
 }
