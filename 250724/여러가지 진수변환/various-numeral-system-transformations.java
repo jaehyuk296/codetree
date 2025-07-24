@@ -10,7 +10,7 @@ public class Main {
         int i=0;
 
         while(true){
-            if(n<2){
+            if(n<b){
                 arr[i++]=n;
                 break;
             }
