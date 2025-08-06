@@ -9,14 +9,12 @@ public class Main {
             arr[i] = sc.nextInt();
         }
         // Please write your code here.
-        int first = arr[0];
-        int num =1 ;
-        for(int i=1;i<n;i++){
-            if(first==arr[i]){
-                num++;
-            }
-            first=arr[i];
-        }        
-        System.out.println(num);
+        int cnt = 0;
+        for(int i = 0; i < n; i++)
+            if(i == 0 || arr[i] != arr[i - 1])
+                cnt++;
+
+        System.out.print(cnt);
+
     }
 }
