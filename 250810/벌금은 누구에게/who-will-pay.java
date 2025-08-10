@@ -16,7 +16,7 @@ public class Main {
         for (int i = 0; i < m; i++) {
             penalizedPerson[i] = sc.nextInt();
             id[penalizedPerson[i]]++;
-            if(id[penalizedPerson[i]]==3){
+            if(id[penalizedPerson[i]]==k){
                 System.out.println(penalizedPerson[i]);
                 return;
             }
