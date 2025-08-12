@@ -51,10 +51,17 @@ public class Main {
 
         // 변경 횟수 계산
         int cnt = 0;
+        int prevLeader = first[0]; // 이전의 "실제" 리더 상태 (동점이면 그대로 유지 안함)
         for (int i = 1; i <= totalTime; i++) {
-            if (first[i] != first[i-1]) cnt++;
+            if (first[i] == prevLeader) continue;
+
+            // 동점이 아닌 상태에서만 prevLeader 갱신
+            if (first[i] != 0) {
+                cnt++;
+                prevLeader = first[i];
+            }
         }
-        System.out.println(cnt);
+
 
     }
 }
