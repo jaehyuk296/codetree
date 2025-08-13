@@ -4,57 +4,27 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        // Please write your code here.
-        int size =  s.length();
-        char [] change = new char [size+1];
-        int x=0,y=0;
-        int angle=0;//시작 북쪽을 향함
-        int now = y;
 
-        for(int i=0;i<size;i++){
-            change[i] = s.charAt(i);
-            if(change[i]=='L'){
-                angle+=270;
-                switch(angle%360){
-                    case 0://북
-                        now=y;
-                    case 90://동
-                        now = x;
-                    case 180://남
-                        now=y;
-                    case 270://서
-                        now = x;
-                }
-            }else if(change[i]=='R'){
-                angle+=90;
-                switch(angle%360){
-                    case 0://북
-                        now=y;
-                    case 90://동
-                        now = x;
-                    case 180://남
-                        now=y;
-                    case 270://서
-                        now = x;
-                }
-            }else if(change[i]=='F'){
-                if(angle==0||angle==90){
-                    now++;
-                    if(angle==0){
-                        y=now;
-                    }else{
-                        x=now;
-                    }
-                }else if(angle==180||angle==270){
-                    now--;
-                     if(angle==180){
-                        y=now;
-                    }else{
-                        x=now;
-                    }
+        int x = 0, y = 0;
+        int angle = 0; // 0: 북, 90: 동, 180: 남, 270: 서
+
+        for (int i = 0; i < s.length(); i++) {
+            char cmd = s.charAt(i);
+
+            if (cmd == 'L') {
+                angle = (angle + 270) % 360; // 왼쪽 90도 회전
+            } else if (cmd == 'R') {
+                angle = (angle + 90) % 360;  // 오른쪽 90도 회전
+            } else if (cmd == 'F') {
+                switch (angle) {
+                    case 0:   y++; break; // 북
+                    case 90:  x++; break; // 동
+                    case 180: y--; break; // 남
+                    case 270: x--; break; // 서
                 }
             }
         }
-        System.out.println(x+" "+y);
+
+        System.out.println(x + " " + y);
     }
 }
