@@ -15,7 +15,7 @@ public class Main {
             change[i] = s.charAt(i);
             if(change[i]=='L'){
                 angle+=270;
-                switch(angle/360){
+                switch(angle%360){
                     case 0://북
                         now=y;
                     case 90://동
@@ -27,7 +27,7 @@ public class Main {
                 }
             }else if(change[i]=='R'){
                 angle+=90;
-                switch(angle/360){
+                switch(angle%360){
                     case 0://북
                         now=y;
                     case 90://동
