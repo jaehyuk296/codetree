@@ -25,17 +25,22 @@ public class Main {
         
         for(int i=0;i<commands.length();i++){//명령어 비교
             char com = commands.charAt(i);
+            if(inRange(x,y))
+                sum += board[x][y];
+            else continue;
+
             if(com=='L') angle=(angle+270)%360;
             else if(com=='R') angle=(angle+90)%360;
             else if(com=='F') {
                 switch(angle){
-                    case 0: x++;break;
-                    case 0: x++;break;
+                    case 0: x--;break;
+                    case 90: y++;break;
+                    case 180: x++;break;
+                    case 270: y--;break;
                 }
+
             }
         }
-
-
-
+        System.out.println(sum);
     }
 }
