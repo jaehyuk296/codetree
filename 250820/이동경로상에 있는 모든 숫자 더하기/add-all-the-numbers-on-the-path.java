@@ -23,7 +23,7 @@ public class Main {
         int angle = 0; // 0: 북, 90: 동, 180: 남, 270: 서
         int sum = 0;
         
-        for(int i=0;i<commands.length();i++){//명령어 비교
+        for(int i=0;i<t;i++){//명령어 비교
             char com = commands.charAt(i);
             if(inRange(x,y))
                 sum += board[x][y];
