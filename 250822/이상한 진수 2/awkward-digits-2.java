@@ -23,7 +23,7 @@ public class Main {
 
         // 만약 전부 1이라서 못 바꿨다면 → 맨 앞을 0으로
         if (!hasZero) {
-            num[0] = 0;
+            num[a.length()] = 0;
         }
 
         // 2진수 → 10진수 변환
