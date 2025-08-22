@@ -10,20 +10,20 @@ public class Main {
             num[i] = a.charAt(i) - '0';
         }
 
-        boolean hasZero = false;
+        boolean changed = false;
 
-        // 앞자리는 유지하고, 두 번째 자리부터 0을 1로 바꾸는 게 최적
+        // 맨 앞 제외, 왼쪽에서부터 처음 0을 1로 바꾼다
         for (int i = 1; i < a.length(); i++) {
             if (num[i] == 0) {
                 num[i] = 1;
-                hasZero = true;
+                changed = true;
                 break;
             }
         }
 
-        // 만약 전부 1이라서 못 바꿨다면 → 맨 앞을 0으로
-        if (!hasZero) {
-            num[a.length()] = 0;
+        // 모두 1이라서 못 바꿨다면 → 맨 뒤를 0으로 바꿈
+        if (!changed) {
+            num[a.length() - 1] = 0;
         }
 
         // 2진수 → 10진수 변환
