@@ -3,27 +3,35 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String a = sc.next();
+        String a = sc.next();   // 2진수 입력 (문자열)
 
-        int maxVal = 0;
-
+        int num[] = new int[a.length()];
         for (int i = 0; i < a.length(); i++) {
-            // i번째 자리 flip
-            char[] arr = a.toCharArray();
-            arr[i] = (arr[i] == '0') ? '1' : '0';
+            num[i] = a.charAt(i) - '0';
+        }
 
-            // 2진수 → 10진수 변환
-            int val = 0;
-            for (int j = 0; j < arr.length; j++) {
-                val = val * 2 + (arr[j] - '0');
-            }
+        boolean hasZero = false;
 
-            // 최대값 갱신
-            if (val > maxVal) {
-                maxVal = val;
+        // 앞자리는 유지하고, 두 번째 자리부터 0을 1로 바꾸는 게 최적
+        for (int i = 1; i < a.length(); i++) {
+            if (num[i] == 0) {
+                num[i] = 1;
+                hasZero = true;
+                break;
             }
         }
 
-        System.out.println(maxVal);
+        // 만약 전부 1이라서 못 바꿨다면 → 맨 앞을 0으로
+        if (!hasZero) {
+            num[0] = 0;
+        }
+
+        // 2진수 → 10진수 변환
+        int n = 0;
+        for (int i = 0; i < a.length(); i++) {
+            n = n * 2 + num[i];
+        }
+
+        System.out.println(n);
     }
 }
