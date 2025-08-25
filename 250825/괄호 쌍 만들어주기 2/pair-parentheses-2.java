@@ -18,6 +18,7 @@ public class Main {
                 } else if (input.charAt(i) == ')') {
                     close++;
                 }
+                if(open < close) close = 0; // ')'가 먼저 나오면 초기화
             }
         }
 
