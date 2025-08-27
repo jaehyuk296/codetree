@@ -3,74 +3,57 @@ import java.util.Scanner;
 public class Main {
     public static int[][] arr;
 
-    public static boolean inSize(int i,int j){
-        if(i-2 < 0 || i+2 >= 19) return false;
-        if(j-2 < 0 || j+2 >= 19) return false;
-        return true;
-    }
-
-    public static boolean horizon(int i,int j){
-        if(!inSize(i,j)) return false;
-        int stone = arr[i][j-2];
-        if(stone == 0) return false;
-        for(int col = j-2; col <= j+2; col++){
-            if(arr[i][col] != stone) return false;
-        }
-        return true;
-    }
-
-    public static boolean vertical(int i,int j){
-        if(!inSize(i,j)) return false;
-        int stone = arr[i-2][j];
-        if(stone == 0) return false;
-        for(int row = i-2; row <= i+2; row++){
-            if(arr[row][j] != stone) return false;
-        }
-        return true;
-    }
-
-    public static boolean diagonal(int i, int j) {
-        if (!inSize(i, j)) return false;
-
-        // ↘ 대각선
-        int stone1 = arr[i-2][j-2];
-        boolean bingo1 = stone1 != 0;
-        for (int row = i-2, col = j-2; row <= i+2 && col <= j+2; row++, col++) {
-            if (arr[row][col] != stone1) {
-                bingo1 = false;
-                break;
-            }
-        }
-
-        // ↙ 대각선
-        int stone2 = arr[i-2][j+2];
-        boolean bingo2 = stone2 != 0;
-        for (int row = i-2, col = j+2; row <= i+2 && col >= j-2; row++, col--) {
-            if (arr[row][col] != stone2) {
-                bingo2 = false;
-                break;
-            }
-        }
-
-        return bingo1 || bingo2;
-    }
+    // 4방향 (가로, 세로, 2개의 대각선)을 탐색하는 방향 배열
+    public static int[] dx = {0, 1, 1, 1}; // 가로, ↘, 세로, ↙
+    public static int[] dy = {1, 0, 1, -1};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         arr = new int[19][19];
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 19; j++) {
-                arr[i][j] = sc.nextInt(); // 0,1,2
+                arr[i][j] = sc.nextInt();
             }
         }
 
-        for (int i = 0; i < 19; i++) {
-            for (int j = 0; j < 19; j++) {
-                if(diagonal(i,j) || vertical(i,j) || horizon(i,j)){
-                    System.out.println(arr[i][j]); // 돌 색 출력
-                    System.out.println((i+1) + " " + (j+1));
+        for (int j = 0; j < 19; j++) {
+            for (int i = 0; i < 19; i++) {
+                if (arr[i][j] != 0) {
+                    for (int k = 0; k < 4; k++) {
+                        int count = 1;
+                        int nx = i + dx[k];
+                        int ny = j + dy[k];
+
+                        while (nx >= 0 && nx < 19 && ny >= 0 && ny < 19 && arr[nx][ny] == arr[i][j]) {
+                            count++;
+                            nx += dx[k];
+                            ny += dy[k];
+                        }
+                        
+                        if (count == 5) {
+                            // 6목 검사 (뒤돌아보기)
+                            int prevX = i - dx[k];
+                            int prevY = j - dy[k];
+                            if (prevX >= 0 && prevX < 19 && prevY >= 0 && prevY < 19 && arr[prevX][prevY] == arr[i][j]) {
+                                continue;
+                            }
+                            
+                            // 승리한 돌의 색깔 출력
+                            System.out.println(arr[i][j]);
+
+                            // 5개 중 가운데 돌의 좌표를 계산하여 출력
+                            // 시작점 (i, j)에서 2칸 떨어진 위치가 가운데
+                            int midX = i + dx[k] * 2;
+                            int midY = j + dy[k] * 2;
+                            System.out.println((midX + 1) + " " + (midY + 1));
+                            return; // 승리 후 프로그램 종료
+                        }
+                    }
                 }
             }
         }
+
+        System.out.println(0);
+        sc.close();
     }
 }
