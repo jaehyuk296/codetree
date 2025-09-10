@@ -11,7 +11,7 @@ public class Main {
         int sum_max = 0;
         int max = 0;
 
-        for(int i=0;i<n-k;i++){
+        for(int i=0;i<=n-k;i++){
             for(int j=0;j<k;j++){
                 sum_max += arr[i+j];
             }
